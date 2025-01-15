@@ -6,7 +6,15 @@ export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
   @Get()
-  getHello(): string {
-    return this.usersService.getHello();
+  getUsers(): Promise<
+    {
+      id: string;
+      name: string;
+      email: string;
+      password: string;
+      avatar: string;
+    }[]
+  > {
+    return this.usersService.getUsers();
   }
 }
