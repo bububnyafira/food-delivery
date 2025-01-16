@@ -10,12 +10,14 @@ import { ConfigService } from '@nestjs/config';
 import { JwtService } from '@nestjs/jwt';
 import { PrismaService } from '../../../prisma/Prisma.service';
 import { UsersResolver } from './users.resolver';
+import { EmailModule } from './email/email.module';
 @Module({
   imports: [
     GraphQLModule.forRoot<ApolloFederationDriverConfig>({
       driver: ApolloFederationDriver,
       autoSchemaFile: { federation: 2 },
     }),
+    EmailModule,
   ],
   controllers: [UsersController],
   providers: [

@@ -12,7 +12,7 @@ export class UsersController {
       name: string;
       email: string;
       password: string;
-      avatar: string;
+      avatar?: string;
     }[]
   > {
     return this.usersService.getUsers();
