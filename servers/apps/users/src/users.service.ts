@@ -5,6 +5,7 @@ import { LoginDto, RegisterDto } from './dto/users.dto';
 import { PrismaService } from '../../../prisma/Prisma.service';
 import { Response } from 'express';
 import * as bcrypt from 'bcrypt';
+import { EmailService } from './email/email.service';
 
 interface UserData {
   name: string;
@@ -19,6 +20,7 @@ export class UsersService {
     private readonly jwtService: JwtService,
     private readonly prisma: PrismaService,
     private readonly configService: ConfigService,
+    private readonly emailService: EmailService,
   ) {}
 
   // register user
@@ -59,7 +61,13 @@ export class UsersService {
 
     const activationCode = activationToken.activationCode;
 
-    console.log(activationCode);
+    await this.emailService.sendMail({
+      email,
+      subject: 'Activate your account',
+      template: '../../email-templates',
+      name,
+      activationCode,
+    });
 
     return { user, response };
   }

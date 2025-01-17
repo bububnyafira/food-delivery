@@ -17,6 +17,15 @@
     "strictBindCallApply": false,
     "forceConsistentCasingInFileNames": false,
     "noFallthroughCasesInSwitch": false,
-    "paths": {}
+    "paths": {
+      "@modules/*": ["src/modules/*"],
+      "@libs/*": ["libs/*"]
+    },
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "types": ["node", "@nestjs/core", "@nestjs/common"],
+    "strict": true,
+    "skipDefaultLibCheck": true
   }
 }

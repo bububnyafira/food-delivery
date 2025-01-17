@@ -4,7 +4,6 @@ import { MailerModule } from '@nestjs-modules/mailer';
 import { ConfigService } from '@nestjs/config';
 import { join } from 'path';
 import { EjsAdapter } from '@nestjs-modules/mailer/dist/adapters/ejs.adapter';
-
 @Global()
 @Module({
   imports: [
@@ -22,7 +21,7 @@ import { EjsAdapter } from '@nestjs-modules/mailer/dist/adapters/ejs.adapter';
           from: 'your-email@gmail.com',
         },
         template: {
-          dir: join(__dirname, '../../../../servers/email-template'),
+          dir: join(__dirname, '../../../email-templates/activation-mail.ejs'),
           adapter: new EjsAdapter(),
           options: {
             strict: false,
@@ -33,5 +32,6 @@ import { EjsAdapter } from '@nestjs-modules/mailer/dist/adapters/ejs.adapter';
     }),
   ],
   providers: [EmailService],
+  exports: [EmailService],
 })
 export class EmailModule {}
