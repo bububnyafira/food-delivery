@@ -24,6 +24,10 @@ export class User {
 
   @Field()
   password: string;
+
+  @Field()
+  email: string;
+
   @Field(() => Avatars, { nullable: true })
   avatar?: Avatars | null;
 

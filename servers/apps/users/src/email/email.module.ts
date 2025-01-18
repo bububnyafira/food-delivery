@@ -18,10 +18,10 @@ import { EjsAdapter } from '@nestjs-modules/mailer/dist/adapters/ejs.adapter';
           },
         },
         defaults: {
-          from: 'your-email@gmail.com',
+          from: 'avhandy946@gmail.com',
         },
         template: {
-          dir: join(__dirname, '../../../email-templates/activation-mail.ejs'),
+          dir: join(__dirname, '../../../../servers/email-templates'),
           adapter: new EjsAdapter(),
           options: {
             strict: false,
