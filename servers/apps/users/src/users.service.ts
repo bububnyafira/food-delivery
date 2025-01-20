@@ -144,7 +144,6 @@ export class UsersService {
       return {
         user: {
           user: null,
-          email: null,
           accessToken: null,
           refreshToken: null,
           error: {
@@ -168,6 +167,9 @@ export class UsersService {
     const user = req.user;
     const refreshToken = req.refreshtoken;
     const accessToken = req.accesstoken;
+
+    console.log({ user, refreshToken, accessToken });
+
     return { user, refreshToken, accessToken };
   }
 
