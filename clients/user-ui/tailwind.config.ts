@@ -1,5 +1,6 @@
 import type { Config } from "tailwindcss";
-import {heroui} from "@heroui/react"
+import { heroui } from "@heroui/react"
+
 
 export default {
   content: [
@@ -13,6 +14,10 @@ export default {
         background: "var(--background)",
         foreground: "var(--foreground)",
       },
+      fontFamily: {
+        Poppins: ["var(--font-Poppins)"],
+        Inter: ["var(--font-Inter)"],
+      }
     },
   },
   darkMode: "class",
