@@ -9,7 +9,7 @@ import {
 } from "@heroui/react";
 import { useState } from "react";
 import { CgProfile } from "react-icons/cg";
-import AuthScreen from "@/src/screens/AuthScreen";
+import AuthScreen from "@/src/shared/screens/AuthScreen";
 
 export default function ProfileDropDown() {
   const [singedIn, setSignedIn] = useState(false);

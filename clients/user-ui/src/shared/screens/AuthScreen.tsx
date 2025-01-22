@@ -1,4 +1,4 @@
-import Login from '@/src/components/Login'
+import Login from '@/src/shared/views/Auth/Login'
 
 const AuthScreen = () => {
   return (

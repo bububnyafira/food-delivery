@@ -1,6 +1,6 @@
 import styles from "@/src/utils/style";
-import NavItems from "./NavItems";
-import ProfileDropDown from "./ProfileDropDown";
+import NavItems from "../NavItems";
+import ProfileDropDown from "../ProfileDropDown";
 
 const Header = () => {
   return (
