@@ -9,7 +9,7 @@ import {
 } from "@heroui/react";
 import { useState } from "react";
 import { CgProfile } from "react-icons/cg";
-import AuthScreen from "@/src/shared/screens/AuthScreen";
+import AuthScreen from "../screens/AuthScreen";
 
 export default function ProfileDropDown() {
   const [singedIn, setSignedIn] = useState(false);
@@ -54,7 +54,9 @@ export default function ProfileDropDown() {
       )}
       {
         open && (
-          <AuthScreen />
+          <AuthScreen setOpen={function (e: boolean): void {
+            throw new Error("Function not implemented.");
+          } } />
         )
       }
     </div>

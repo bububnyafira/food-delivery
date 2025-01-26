@@ -1,10 +1,27 @@
-import Login from "@/src/shared/views/Auth/Login";
+import { useState } from "react";
+import Login from "../views/Auth/Login";
+import Signup from "../views/Auth/Signup";
 
-const AuthScreen = () => {
+const AuthScreen = ({ setOpen }: { setOpen: (e: boolean) => void }) => {
+  const [activeState, setActiveState] = useState("Login");
+
+  const handleClose = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (e.target instanceof HTMLDivElement && e.target.id === "screen") {
+      setOpen(false);
+    }
+  };
+
   return (
-    <div className="w-full fixed top-0 h-screen z-50 flex items-center justify-center bg-[#00000027]">
-      <div className="w-[500px] h-[500px] bg-slate-900 rounded-md shadow-sm p-3">
-        <Login />
+    <div
+      className="w-full fixed top-0 left-0 h-screen z-50 flex items-center justify-center bg-[#00000027]"
+      id="screen"
+      onClick={handleClose}
+    >
+      <div className="w-[500px] bg-slate-900 rounded shadow-sm p-3">
+        {activeState === "Login" && (
+          <Login setActivateState={setActiveState} setOpen={setOpen} />
+        )}
+        {activeState === "Signup" && <Signup setActiveState={setActiveState} />}
       </div>
     </div>
   );
