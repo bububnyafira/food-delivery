@@ -13,11 +13,11 @@ const AuthScreen = ({ setOpen }: { setOpen: (e: boolean) => void }) => {
 
   return (
     <div
-      className="w-full fixed top-0 left-0 h-screen z-50 flex items-center justify-center bg-[#00000027]"
+      className="w-full fixed top-0 left-0 h-screen rounded-xl z-50 flex items-center justify-center bg-[#00000027]"
       id="screen"
       onClick={handleClose}
     >
-      <div className="w-[500px] bg-slate-900 rounded shadow-sm p-3">
+      <div className="w-[500px] bg-slate-900 rounded-xl shadow-sm p-3">
         {activeState === "Login" && (
           <Login setActivateState={setActiveState} setOpen={setOpen} />
         )}

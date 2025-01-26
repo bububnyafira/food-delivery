@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-"use client"
+"use client";
 import styles from "@/src/utils/style";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
@@ -103,7 +103,7 @@ const Login = ({
         )}
         <div className="w-full mt-5">
           <span
-            className={`${styles.label} text-[#2190ff] block text-right cursor-pointer`}
+            className={`${styles.label} text-[#2190ff] block text-right mb-2 cursor-pointer`}
             onClick={() => setActivateState("Forgot-Password")}
           >
             Forgot your password?
@@ -119,14 +119,20 @@ const Login = ({
         <h5 className="text-center pt-3 font-Poppins text-[16px] text-white">
           Or join with
         </h5>
-        <div className="flex items-center justify-between my-3" onClick={() => signIn()}>
-          <FcGoogle size={30} className="cursor-pointer mr-2"/>
+        <div
+          className="flex items-center justify-center my-3"
+          onClick={() => signIn()}
+        >
+          <FcGoogle size={30} className="cursor-pointer" />
         </div>
-        <h5 className="text-center pt-4 font-Poppins text-[14px]">
+        <h5 className="text-center text-white pt-4 font-Poppins text-[14px]">
           Not have any account?
-            <span className="text-[#2190ff] pl-1 cursor-pointer" onClick={() => setActivateState("Sign-Up")}>
-              Sign up
-            </span>
+          <span
+            className="text-[#2190ff] pl-1 cursor-pointer"
+            onClick={() => setActivateState("Signup")}
+          >
+            Sign up
+          </span>
         </h5>
         <br />
       </form>

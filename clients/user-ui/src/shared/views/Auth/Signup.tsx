@@ -1,4 +1,5 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+ 
 "use client";
 import styles from "../../../utils/style";
 import { z } from "zod";
@@ -11,8 +12,8 @@ import {
 } from "react-icons/ai";
 import { FcGoogle } from "react-icons/fc";
 import { useState } from "react";
-import { useMutation } from "@apollo/client";
-import { REGISTER_USER } from "../../../graphql/actions/register.action";
+// import { useMutation } from "@apollo/client";
+// import { REGISTER_USER } from "../../../graphql/actions/register.action";
 import toast from "react-hot-toast";
 
 const formSchema = z.object({
@@ -31,7 +32,7 @@ const Signup = ({
 }: {
   setActiveState: (e: string) => void;
 }) => {
-  const [registerUserMutation, { loading }] = useMutation(REGISTER_USER);
+  // const [registerUserMutation, { loading }] = useMutation(REGISTER_USER);
 
   const {
     register,
@@ -44,20 +45,22 @@ const Signup = ({
   const [show, setShow] = useState(false);
 
   const onSubmit = async (data: SignUpSchema) => {
-    try {
-      const response = await registerUserMutation({
-        variables: data,
-      });
-      localStorage.setItem(
-        "activation_token",
-        response.data.register.activation_token
-      );
-      toast.success("Please check your email to activate your account!");
-      reset();
-      setActiveState("Verification");
-    } catch (error: any) {
-      toast.error(error.message);
-    }
+    console.log(data);
+    reset();
+    // try {
+    //   const response = await registerUserMutation({
+    //     variables: data,
+    //   });
+    //   localStorage.setItem(
+    //     "activation_token",
+    //     response.data.register.activation_token
+    //   );
+    //   toast.success("Please check your email to activate your account!");
+    //   reset();
+    //   setActiveState("Verification");
+    // } catch (error: any) {
+    //   toast.error(error.message);
+    // }
   };
 
   return (
@@ -99,7 +102,7 @@ const Signup = ({
             </span>
           )}
         </div>
-        <div className="w-full mt-5 relative mb-1">
+        <div className="w-full mt-2 relative mb-1">
           <label htmlFor="password" className={`${styles.label}`}>
             Enter your password
           </label>
@@ -111,13 +114,13 @@ const Signup = ({
           />
           {!show ? (
             <AiOutlineEyeInvisible
-              className="absolute bottom-3 right-2 z-1 cursor-pointer"
+              className="absolute text-white bottom-3 right-2 z-1 cursor-pointer"
               size={20}
               onClick={() => setShow(true)}
             />
           ) : (
             <AiOutlineEye
-              className="absolute bottom-3 right-2 z-1 cursor-pointer"
+              className="absolute text-white bottom-3 right-2 z-1 cursor-pointer"
               size={20}
               onClick={() => setShow(false)}
             />
@@ -126,23 +129,23 @@ const Signup = ({
         {errors.password && (
           <span className="text-red-500 mt-1">{`${errors.password.message}`}</span>
         )}
-        <div className="w-full mt-5">
+        <div className="w-full mt-2">
           <input
             type="submit"
             value="Sign Up"
-            disabled={isSubmitting || loading}
+            disabled={isSubmitting}
             className={`${styles.button} mt-3`}
           />
         </div>
         <br />
-        <h5 className="text-center pt-4 font-Poppins text-[16px] text-white">
+        <h5 className="text-center pt-2 font-Poppins text-[16px] text-white">
           Or join with
         </h5>
-        <div className="flex items-center justify-center my-3">
+        <div className="flex items-center text-white justify-center my-3">
           <FcGoogle size={30} className="cursor-pointer mr-2" />
           <AiFillGithub size={30} className="cursor-pointer ml-2" />
         </div>
-        <h5 className="text-center pt-4 font-Poppins text-[14px]">
+        <h5 className="text-center text-white pt-2 font-Poppins text-[14px]">
           Already have an account?
           <span
             className="text-[#2190ff] pl-1 cursor-pointer"
