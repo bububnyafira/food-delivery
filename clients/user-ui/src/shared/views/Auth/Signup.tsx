@@ -1,6 +1,4 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
- 
-"use client";
+ "use client";
 import styles from "../../../utils/style";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
@@ -12,14 +10,14 @@ import {
 } from "react-icons/ai";
 import { FcGoogle } from "react-icons/fc";
 import { useState } from "react";
-// import { useMutation } from "@apollo/client";
-// import { REGISTER_USER } from "../../../graphql/actions/register.action";
+import { useMutation } from "@apollo/client";
+import { REGISTER_USER } from "../../../graphql/actions/register.action";
 import toast from "react-hot-toast";
 
 const formSchema = z.object({
   name: z.string().min(3, "Name must be at least 3 characters long!"),
   email: z.string().email(),
-  password: z.string().min(8, "Password must be at least 8characters long!"),
+  password: z.string().min(8, "Password must be at least 8 characters long!"),
   phone_number: z
     .number()
     .min(10, "Phone number must be at least 11 characters!"),
@@ -32,7 +30,7 @@ const Signup = ({
 }: {
   setActiveState: (e: string) => void;
 }) => {
-  // const [registerUserMutation, { loading }] = useMutation(REGISTER_USER);
+  const [registerUserMutation, { loading }] = useMutation(REGISTER_USER);
 
   const {
     register,
@@ -47,20 +45,22 @@ const Signup = ({
   const onSubmit = async (data: SignUpSchema) => {
     console.log(data);
     reset();
-    // try {
-    //   const response = await registerUserMutation({
-    //     variables: data,
-    //   });
-    //   localStorage.setItem(
-    //     "activation_token",
-    //     response.data.register.activation_token
-    //   );
-    //   toast.success("Please check your email to activate your account!");
-    //   reset();
-    //   setActiveState("Verification");
-    // } catch (error: any) {
-    //   toast.error(error.message);
-    // }
+    try {
+      const response = await registerUserMutation({
+        variables: data,
+      });
+      localStorage.setItem(
+        "activation_token",
+        response.data.register.activation_token
+      );
+      toast.success("Please check your email to activate your account!");
+      reset();
+      setActiveState("Verification");
+    } catch (error: unknown ) {
+      const typedError = error as { message: string }
+      toast.error(typedError.message);
+      console.log(typedError.message);
+    }
   };
 
   return (
@@ -114,14 +114,14 @@ const Signup = ({
           />
           {!show ? (
             <AiOutlineEyeInvisible
-              className="absolute text-white bottom-3 right-2 z-1 cursor-pointer"
-              size={20}
+              className="absolute text-white bottom-2 right-2 z-1 cursor-pointer"
+              size={25}
               onClick={() => setShow(true)}
             />
           ) : (
             <AiOutlineEye
-              className="absolute text-white bottom-3 right-2 z-1 cursor-pointer"
-              size={20}
+              className="absolute text-white bottom-2 right-2 z-1 cursor-pointer"
+              size={25}
               onClick={() => setShow(false)}
             />
           )}
@@ -133,7 +133,7 @@ const Signup = ({
           <input
             type="submit"
             value="Sign Up"
-            disabled={isSubmitting}
+            disabled={isSubmitting || loading}
             className={`${styles.button} mt-3`}
           />
         </div>
@@ -141,11 +141,11 @@ const Signup = ({
         <h5 className="text-center pt-2 font-Poppins text-[16px] text-white">
           Or join with
         </h5>
-        <div className="flex items-center text-white justify-center my-3">
+        <div className="flex items-center text-white justify-center my-2">
           <FcGoogle size={30} className="cursor-pointer mr-2" />
           <AiFillGithub size={30} className="cursor-pointer ml-2" />
         </div>
-        <h5 className="text-center text-white pt-2 font-Poppins text-[14px]">
+        <h5 className="text-center text-white pt-2 mb-3 font-Poppins text-[14px]">
           Already have an account?
           <span
             className="text-[#2190ff] pl-1 cursor-pointer"
@@ -154,7 +154,6 @@ const Signup = ({
             Login
           </span>
         </h5>
-        <br />
       </form>
     </div>
   );

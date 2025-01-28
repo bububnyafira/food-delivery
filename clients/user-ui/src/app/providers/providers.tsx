@@ -3,22 +3,25 @@
 
 import { useState, useEffect } from "react";
 import { ThemeProvider as NextThemesProvider } from "next-themes";
+import { ApolloProvider } from "@apollo/client";
+import { graphqlClient } from "@/src/graphql/gql.setup";
 
 export function Providers({ children }: { children: React.ReactNode }) {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    setMounted(true); // Ensure client-side rendering
+    setMounted(true);
   }, []);
 
   if (!mounted) {
-    // Return a loading state or fallback content while theme is being set
     return <>{children}</>;
   }
 
   return (
-    <NextThemesProvider attribute="class" defaultTheme="dark">
+    <ApolloProvider client={graphqlClient}>
+      <NextThemesProvider attribute="class" defaultTheme="dark">
       {children}
     </NextThemesProvider>
+    </ApolloProvider>
   );
 }

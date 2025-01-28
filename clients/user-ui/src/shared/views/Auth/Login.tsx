@@ -4,7 +4,7 @@ import styles from "@/src/utils/style";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
+import { AiFillGithub, AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { FcGoogle } from "react-icons/fc";
 import { useState } from "react";
 // import toast from "react-hot-toast";
@@ -79,21 +79,20 @@ const Login = ({
             Enter your password
           </label>
           <input
-            // type={!show ? "password" : "text"}
-            type="password"
+            type={!show ? "password" : "text"}            
             placeholder="password"
             className={`${styles.input}`}
           />
           {!show ? (
             <AiOutlineEyeInvisible
-              className="absolute bottom-3 right-2 z-1 cursor-pointer"
-              size={20}
+              className="absolute text-white bottom-2 right-2 z-1 cursor-pointer"
+              size={25}
               onClick={() => setShow(true)}
             />
           ) : (
             <AiOutlineEye
-              className="absolute bottom-3 right-2 z-1 cursor-pointer"
-              size={20}
+              className="absolute text-white bottom-2 right-2 z-1 cursor-pointer"
+              size={25}
               onClick={() => setShow(false)}
             />
           )}
@@ -120,10 +119,11 @@ const Login = ({
           Or join with
         </h5>
         <div
-          className="flex items-center justify-center my-3"
+          className="flex items-center text-white justify-center my-3"
           onClick={() => signIn()}
         >
-          <FcGoogle size={30} className="cursor-pointer" />
+          <FcGoogle size={30} className="cursor-pointer mr-2" />
+          <AiFillGithub size={30} className="cursor-pointer ml-2" />
         </div>
         <h5 className="text-center text-white pt-4 font-Poppins text-[14px]">
           Not have any account?
