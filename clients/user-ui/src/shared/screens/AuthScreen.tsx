@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Login from "../views/Auth/Login";
 import Signup from "../views/Auth/Signup";
+import Verification from "../views/Auth/Verification";
 
 const AuthScreen = ({ setOpen }: { setOpen: (e: boolean) => void }) => {
   const [activeState, setActiveState] = useState("Login");
@@ -22,6 +23,9 @@ const AuthScreen = ({ setOpen }: { setOpen: (e: boolean) => void }) => {
           <Login setActivateState={setActiveState} setOpen={setOpen} />
         )}
         {activeState === "Signup" && <Signup setActiveState={setActiveState} />}
+        {activeState === "Verification" && (
+          <Verification setActiveState={setActiveState} />
+        )}
       </div>
     </div>
   );

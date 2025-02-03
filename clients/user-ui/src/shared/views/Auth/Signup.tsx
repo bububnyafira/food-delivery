@@ -59,7 +59,6 @@ const Signup = ({
     } catch (error: unknown ) {
       const typedError = error as { message: string }
       toast.error(typedError.message);
-      console.log(typedError.message);
     }
   };
 
