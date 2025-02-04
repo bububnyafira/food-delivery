@@ -47,18 +47,12 @@ export default function ProfileDropDown() {
           </DropdownMenu>
         </Dropdown>
       ) : (
-        <CgProfile 
-        className="text-white text-2xl cursor-pointer"
-        onClick={() => setOpen(!open)}
+        <CgProfile
+          className="text-white text-2xl cursor-pointer"
+          onClick={() => setOpen(!open)}
         />
       )}
-      {
-        open && (
-          <AuthScreen setOpen={function (e: boolean): void {
-            throw new Error("Function not implemented.");
-          } } />
-        )
-      }
+      {open && <AuthScreen setOpen={setOpen} />}
     </div>
   );
 }
