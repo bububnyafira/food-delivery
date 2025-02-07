@@ -45,14 +45,14 @@ const ForgotPassword = ({
 
   return (
     <div>
-      <h1 className={styles.title}>Forgot your password?</h1>
+      <h1 className={`${styles.title}`}>Forgot your password?</h1>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <label className={styles.label}>Enter your Email</label>
+        <label className={`${styles.label}`}>Enter your Email</label>
         <input
           {...register("email")}
           type="email"
           placeholder="loginmail@gmail.com"
-          className={styles.input}
+          className={`${styles.input}`}
         />
         {errors.email && (
           <span className="text-red-500 block mt-1">

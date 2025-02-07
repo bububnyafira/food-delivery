@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import styles from "@/src/utils/style";
 import { ACTIVATE_USER } from "@/src/graphql/actions/activation.action";
 import { useMutation } from "@apollo/client";
@@ -36,7 +37,7 @@ const Verification: FC<Props> = ({ setActiveState }) => {
 
   const verificationHandler = async () => {
     const verificationNumber = Object.values(verifyNumber).join("");
-    const activationToken = localStorage.getItem("activation_oken");
+    const activationToken = localStorage.getItem("activation_token");
 
     if (verificationNumber.length !== 4) {
       setInvalidError(true);
@@ -53,25 +54,24 @@ const Verification: FC<Props> = ({ setActiveState }) => {
         localStorage.removeItem("activation_token");
         toast.success("Account activated successfully");
         setActiveState("login");
-      } catch (error: unknown) {
-        const typedError = error as { message: string };
-        toast.error(typedError.message);
+      } catch (error: any) {
+        console.error("GraphQL Error:", error);
+        toast.error(error.message || "Activation failed.");
       }
     }
   };
 
-  const handleInputChange = (index: number, value: string) => { 
+  const handleInputChange = (index: number, value: string) => {
     setInvalidError(false);
     const newVerifyNumber = { ...verifyNumber, [index]: value };
-    setVerifyNumber(newVerifyNumber)
+    setVerifyNumber(newVerifyNumber);
 
     if (value === "" && index > 0) {
       inputRefs[index - 1].current?.focus();
     } else if (value.length === 1 && index < 3) {
       inputRefs[index + 1].current?.focus();
     }
-
-  }
+  };
 
   return (
     <div>
