@@ -38,7 +38,6 @@ const Login = ({
   const [show, setShow] = useState(false);
 
   const onSubmit = async (data: LoginSchema) => {
-    console.log(data);
     reset();
     const loginData = {
       email: data.email,

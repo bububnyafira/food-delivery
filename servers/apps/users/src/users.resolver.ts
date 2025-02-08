@@ -34,7 +34,7 @@ export class UsersResolver {
 
   @Mutation(() => ActivationResponse)
   async activateUser(
-    @Args('activationInput') activationDto: ActivationDto,
+    @Args('activationDto') activationDto: ActivationDto,
     @Context() context: { res: Response },
   ): Promise<ActivationResponse> {
     return await this.userService.activateUser(activationDto, context.res);
