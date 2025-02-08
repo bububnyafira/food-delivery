@@ -62,7 +62,7 @@ const Signup = ({
 
   return (
     <div>
-      <h1 className={`${styles.title}`}>SignUp with Becodemy</h1>
+      <h1 className={`${styles.title}`}>SignUp to FastFoodGo</h1>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="w-full relative mb-3">
           <label className={`${styles.label}`}>Enter your Name</label>
@@ -138,11 +138,11 @@ const Signup = ({
         <h5 className="text-center pt-4 font-Poppins text-[16px] text-white">
           Or join with
         </h5>
-        <div className="flex items-center justify-center my-3">
+        <div className="flex items-center text-white justify-center my-3">
           <FcGoogle size={30} className="cursor-pointer mr-2" />
           <AiFillGithub size={30} className="cursor-pointer ml-2" />
         </div>
-        <h5 className="text-center pt-4 font-Poppins text-[14px]">
+        <h5 className="text-center text-white pt-4 font-Poppins text-[14px]">
           Already have an account?
           <span
             className="text-[#2190ff] pl-1 cursor-pointer"
